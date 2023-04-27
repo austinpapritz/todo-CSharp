@@ -21,7 +21,11 @@ namespace todo_CSharp
             {
                 Console.Clear();
                 DisplayTodos(); // Show the list of todos
-                Console.Write("Enter your command: ");
+                Console.WriteLine("Choose an option:");
+                Console.WriteLine("1. Add Todo");
+                Console.WriteLine("2. Toggle Todo Completion");
+                Console.WriteLine("3. Delete Todo");
+                Console.WriteLine("4. Exit");
                 input = Console.ReadLine();
 
                 // Split the input into command and arguments

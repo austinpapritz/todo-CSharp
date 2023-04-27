@@ -3,3 +3,15 @@ C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.Gener
 C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.AssemblyInfoInputs.cache
 C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.AssemblyInfo.cs
 C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\bin\Debug\net7.0\todo-CSharp.exe
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\bin\Debug\net7.0\todo-CSharp.deps.json
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\bin\Debug\net7.0\todo-CSharp.runtimeconfig.json
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\bin\Debug\net7.0\todo-CSharp.dll
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\bin\Debug\net7.0\todo-CSharp.pdb
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.csproj.CopyComplete
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.dll
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\refint\todo-CSharp.dll
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.pdb
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.genruntimeconfig.cache
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\ref\todo-CSharp.dll

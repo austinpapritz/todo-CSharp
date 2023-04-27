@@ -81,4 +81,52 @@ namespace todo_CSharp
 
         private static void ToggleTodoCompletion()
         {
-            Console.Write("Enter the ID of the todo
+            Console.Write("Enter the ID of the todo you want to toggle: ");
+            int id;
+            if (int.TryParse(Console.ReadLine(), out id))
+            {
+                var todo = todos.Find(t => t.Id == id);
+                if (todo != null)
+                {
+                    todo.Completed = !todo.Completed;
+                    SaveTodos();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid ID. Press Enter to continue.");
+                    Console.ReadLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Press Enter to continue.");
+                Console.ReadLine();
+            }
+        }
+
+        private static void DeleteTodo()
+        {
+            Console.Write("Enter the ID of the todo you want to delete: ");
+            int id;
+            if (int.TryParse(Console.ReadLine(), out id))
+            {
+                var todo = todos.Find(t => t.Id == id);
+                if (todo != null)
+                {
+                    todos.Remove(todo);
+                    SaveTodos();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid ID. Press Enter to continue.");
+                    Console.ReadLine();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Press Enter to continue.");
+                Console.ReadLine();
+            }
+        }
+    }
+}

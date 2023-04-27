@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "Title": "Add a todo",
+    "Completed": false
+  },
+  {
+    "Id": 2,
+    "Title": "Commit changes",
+    "Completed": false
+  },
+  {
+    "Id": 3,
+    "Title": "Test if I can choose an option with content",
+    "Completed": false
+  },
+  {
+    "Id": 4,
+    "Title": "test toggle",
+    "Completed": false
+  },
+  {
+    "Id": 5,
+    "Title": "test delete",
+    "Completed": false
+  },
+  {
+    "Id": 6,
+    "Title": "test exit",
+    "Completed": false
+  }
+]

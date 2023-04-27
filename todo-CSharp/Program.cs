@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace todo_CSharp
@@ -12,37 +13,63 @@ namespace todo_CSharp
 
         static void Main(string[] args)
         {
-            LoadTodos();
+            LoadTodos(); // Load existing todos from file
+
             string input;
 
             do
             {
                 Console.Clear();
-                DisplayTodos();
-                Console.WriteLine("Choose an option:");
-                Console.WriteLine("1. Add Todo");
-                Console.WriteLine("2. Toggle Todo Completion");
-                Console.WriteLine("3. Delete Todo");
-                Console.WriteLine("4. Exit");
+                DisplayTodos(); // Show the list of todos
+                Console.Write("Enter your command: ");
                 input = Console.ReadLine();
 
-                switch (input)
+                // Split the input into command and arguments
+                string[] inputParts = input.Split(' ', 2);
+                string command = inputParts[0];
+
+                switch (command)
                 {
-                    case "1":
-                        AddTodo();
+                    case "1": // Add Todo
+                        if (inputParts.Length == 2)
+                        {
+                            AddTodo(inputParts[1]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Press Enter to continue.");
+                            Console.ReadLine();
+                        }
                         break;
-                    case "2":
-                        ToggleTodoCompletion();
+                    case "2": // Toggle Todo Completion
+                        if (inputParts.Length == 2)
+                        {
+                            ToggleTodoCompletion(inputParts[1]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Press Enter to continue.");
+                            Console.ReadLine();
+                        }
                         break;
-                    case "3":
-                        DeleteTodo();
+                    case "3": // Delete Todo
+                        if (inputParts.Length == 2)
+                        {
+                            DeleteTodo(inputParts[1]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Press Enter to continue.");
+                            Console.ReadLine();
+                        }
                         break;
                 }
             } while (input != "4");
 
-            SaveTodos();
+            SaveTodos(); // Save todos to file before exiting
         }
 
+        // Load todos from the JSON file
         private static void LoadTodos()
         {
             if (File.Exists(FILE_NAME))
@@ -52,12 +79,14 @@ namespace todo_CSharp
             }
         }
 
+        // Save todos to the JSON file
         private static void SaveTodos()
         {
             string json = JsonConvert.SerializeObject(todos, Formatting.Indented);
             File.WriteAllText(FILE_NAME, json);
         }
 
+        // Display the list of todos in the console
         private static void DisplayTodos()
         {
             Console.WriteLine("Todos:");
@@ -68,22 +97,20 @@ namespace todo_CSharp
             Console.WriteLine();
         }
 
-        private static void AddTodo()
+        // Add a new todo with the given title
+        private static void AddTodo(string title)
         {
-            Console.Write("Enter the title of the new todo: ");
-            string title = Console.ReadLine();
-
-            int newId = todos.Count > 0 ? todos[todos.Count - 1].Id + 1 : 1;
+            int newId = todos.Count > 0 ? todos.Max(t => t.Id) + 1 : 1;
 
             todos.Add(new TodoItem { Id = newId, Title = title, Completed = false });
             SaveTodos();
         }
 
-        private static void ToggleTodoCompletion()
+        // Toggle the completion status of the todo with the given ID
+        private static void ToggleTodoCompletion(string idInput)
         {
-            Console.Write("Enter the ID of the todo you want to toggle: ");
             int id;
-            if (int.TryParse(Console.ReadLine(), out id))
+            if (int.TryParse(idInput, out id))
             {
                 var todo = todos.Find(t => t.Id == id);
                 if (todo != null)
@@ -104,11 +131,11 @@ namespace todo_CSharp
             }
         }
 
-        private static void DeleteTodo()
+        // Delete the todo with the given ID
+        private static void DeleteTodo(string idInput)
         {
-            Console.Write("Enter the ID of the todo you want to delete: ");
             int id;
-            if (int.TryParse(Console.ReadLine(), out id))
+            if (int.TryParse(idInput, out id))
             {
                 var todo = todos.Find(t => t.Id == id);
                 if (todo != null)
@@ -130,3 +157,4 @@ namespace todo_CSharp
         }
     }
 }
+

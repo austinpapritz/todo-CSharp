@@ -1,31 +1,3 @@
 {
-  "Avy": [
-    {
-      "Id": 1,
-      "Title": "add a todo",
-      "Completed": false
-    },
-    {
-      "Id": 2,
-      "Title": "test with another user",
-      "Completed": false
-    },
-    {
-      "Id": 3,
-      "Title": "sign out with user",
-      "Completed": false
-    },
-    {
-      "Id": 4,
-      "Title": "sign back in to other user ",
-      "Completed": false
-    }
-  ],
-  "Winston": [
-    {
-      "Id": 1,
-      "Title": "test",
-      "Completed": true
-    }
-  ]
+  "Avy": []
 }

@@ -16,72 +16,80 @@ namespace todo_CSharp
         {
             LoadTodos(); // Load existing todos from file
 
-            Console.Write("Enter your username: ");
-            currentUser = Console.ReadLine();
-
-            if (!userTodos.ContainsKey(currentUser))
-            {
-                userTodos[currentUser] = new List<TodoItem>();
-            }
-
-            string input;
-
             do
             {
-                Console.Clear();
-                DisplayTodos(); // Show the list of todos
+                Console.Write("Enter your username: ");
+                currentUser = Console.ReadLine();
 
-                // Show user commands
-                Console.WriteLine("Choose an option:");
-                Console.WriteLine("1. Add Todo");
-                Console.WriteLine("2. Toggle Todo Completion");
-                Console.WriteLine("3. Delete Todo");
-                Console.WriteLine("4. Exit");
-
-                Console.Write("Enter your command: ");
-                input = Console.ReadLine();
-
-                // Split the input into command and arguments
-                string[] inputParts = input.Split(' ', 2);
-                string command = inputParts[0];
-
-                switch (command)
+                if (!userTodos.ContainsKey(currentUser))
                 {
-                    case "1": // Add Todo
-                        if (inputParts.Length == 2)
-                        {
-                            AddTodo(inputParts[1]);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Press Enter to continue.");
-                            Console.ReadLine();
-                        }
-                        break;
-                    case "2": // Toggle Todo Completion
-                        if (inputParts.Length == 2)
-                        {
-                            ToggleTodoCompletion(inputParts[1]);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Press Enter to continue.");
-                            Console.ReadLine();
-                        }
-                        break;
-                    case "3": // Delete Todo
-                        if (inputParts.Length == 2)
-                        {
-                            DeleteTodo(inputParts[1]);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid input. Press Enter to continue.");
-                            Console.ReadLine();
-                        }
-                        break;
+                    userTodos[currentUser] = new List<TodoItem>();
                 }
-            } while (input != "4");
+
+                string input;
+
+                do
+                {
+                    Console.Clear();
+                    DisplayTodos(); // Show the list of todos
+
+                    // Show user commands
+                    Console.WriteLine("Choose an option:");
+                    Console.WriteLine("1. Add Todo");
+                    Console.WriteLine("2. Toggle Todo Completion");
+                    Console.WriteLine("3. Delete Todo");
+                    Console.WriteLine("4. Exit");
+                    Console.WriteLine("5. Sign Out");
+
+                    Console.Write("Enter your command: ");
+                    input = Console.ReadLine();
+
+                    // Split the input into command and arguments
+                    string[] inputParts = input.Split(' ', 2);
+                    string command = inputParts[0];
+
+                    switch (command)
+                    {
+                        case "1": // Add Todo
+                            if (inputParts.Length == 2)
+                            {
+                                AddTodo(inputParts[1]);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Press Enter to continue.");
+                                Console.ReadLine();
+                            }
+                            break;
+                        case "2": // Toggle Todo Completion
+                            if (inputParts.Length == 2)
+                            {
+                                ToggleTodoCompletion(inputParts[1]);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Press Enter to continue.");
+                                Console.ReadLine();
+                            }
+                            break;
+                        case "3": // Delete Todo
+                            if (inputParts.Length == 2)
+                            {
+                                DeleteTodo(inputParts[1]);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Press Enter to continue.");
+                                Console.ReadLine();
+                            }
+                            break;
+                        case "4": // Sign Out
+                            currentUser = null;
+                            break;
+                    }
+                } while (input != "4" && input != "5");
+
+            } while (currentUser != null);
 
             SaveTodos(); // Save todos to file before exiting
         }

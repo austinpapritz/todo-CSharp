@@ -1,0 +1,5 @@
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.csproj.AssemblyReference.cache
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.AssemblyInfoInputs.cache
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.AssemblyInfo.cs
+C:\Users\P4ppy\Coding\todo-CSharp\todo-CSharp\obj\Debug\net7.0\todo-CSharp.csproj.CoreCompileInputs.cache

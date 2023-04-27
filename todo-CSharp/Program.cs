@@ -21,7 +21,7 @@ namespace todo_CSharp
             {
                 Console.Clear();
                 DisplayTodos(); // Show the list of todos
-                Console.WriteLine("Choose an option:");
+                Console.WriteLine("Choose an option:"); // Writes the list of user commands
                 Console.WriteLine("1. Add Todo");
                 Console.WriteLine("2. Toggle Todo Completion");
                 Console.WriteLine("3. Delete Todo");

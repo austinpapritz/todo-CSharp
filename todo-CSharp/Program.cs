@@ -9,11 +9,20 @@ namespace todo_CSharp
     class Program
     {
         private const string FILE_NAME = "todos.json";
-        private static List<TodoItem> todos = new List<TodoItem>();
+        private static Dictionary<string, List<TodoItem>> userTodos = new Dictionary<string, List<TodoItem>>();
+        private static string currentUser;
 
         static void Main(string[] args)
         {
             LoadTodos(); // Load existing todos from file
+
+            Console.Write("Enter your username: ");
+            currentUser = Console.ReadLine();
+
+            if (!userTodos.ContainsKey(currentUser))
+            {
+                userTodos[currentUser] = new List<TodoItem>();
+            }
 
             string input;
 
@@ -21,11 +30,15 @@ namespace todo_CSharp
             {
                 Console.Clear();
                 DisplayTodos(); // Show the list of todos
-                Console.WriteLine("Choose an option:"); // Writes the list of user commands
+
+                // Show user commands
+                Console.WriteLine("Choose an option:");
                 Console.WriteLine("1. Add Todo");
                 Console.WriteLine("2. Toggle Todo Completion");
                 Console.WriteLine("3. Delete Todo");
                 Console.WriteLine("4. Exit");
+
+                Console.Write("Enter your command: ");
                 input = Console.ReadLine();
 
                 // Split the input into command and arguments
@@ -79,22 +92,22 @@ namespace todo_CSharp
             if (File.Exists(FILE_NAME))
             {
                 string json = File.ReadAllText(FILE_NAME);
-                todos = JsonConvert.DeserializeObject<List<TodoItem>>(json);
+                userTodos = JsonConvert.DeserializeObject<Dictionary<string, List<TodoItem>>>(json);
             }
         }
 
         // Save todos to the JSON file
         private static void SaveTodos()
         {
-            string json = JsonConvert.SerializeObject(todos, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(userTodos, Formatting.Indented);
             File.WriteAllText(FILE_NAME, json);
         }
 
         // Display the list of todos in the console
         private static void DisplayTodos()
         {
-            Console.WriteLine("Todos:");
-            foreach (var todo in todos)
+            Console.WriteLine($"Todos for {currentUser}:");
+            foreach (var todo in userTodos[currentUser])
             {
                 Console.WriteLine($"{todo.Id}. {(todo.Completed ? "[x]" : "[ ]")} {todo.Title}");
             }
@@ -104,9 +117,10 @@ namespace todo_CSharp
         // Add a new todo with the given title
         private static void AddTodo(string title)
         {
-            int newId = todos.Count > 0 ? todos.Max(t => t.Id) + 1 : 1;
+            int newId = userTodos[currentUser].Count > 0 ? userTodos[currentUser].Max(t => t.Id) + 1 : 1;
 
-            todos.Add(new TodoItem { Id = newId, Title = title, Completed = false });
+            userTodos[currentUser].Add(new TodoItem { Id = newId, Title = title, Completed = false });
+
             SaveTodos();
         }
 
@@ -116,7 +130,7 @@ namespace todo_CSharp
             int id;
             if (int.TryParse(idInput, out id))
             {
-                var todo = todos.Find(t => t.Id == id);
+                var todo = userTodos[currentUser].Find(t => t.Id == id);
                 if (todo != null)
                 {
                     todo.Completed = !todo.Completed;
@@ -141,10 +155,10 @@ namespace todo_CSharp
             int id;
             if (int.TryParse(idInput, out id))
             {
-                var todo = todos.Find(t => t.Id == id);
+                var todo = userTodos[currentUser].Find(t => t.Id == id);
                 if (todo != null)
                 {
-                    todos.Remove(todo);
+                    userTodos[currentUser].Remove(todo);
                     SaveTodos();
                 }
                 else
@@ -160,5 +174,11 @@ namespace todo_CSharp
             }
         }
     }
-}
 
+    class TodoItem
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public bool Completed { get; set; }
+    }
+}
